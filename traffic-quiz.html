@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>交通安全學習測驗</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f2f6fa;color:#333;margin:0;line-height:1.8}
+header{background:#174a70;color:white;text-align:center;padding:30px}
+main{max-width:850px;margin:30px auto;padding:25px;background:white;border-radius:12px}
+.question{background:#f5f8fb;padding:15px;margin:15px 0;border-radius:8px}
+button{background:#2475a8;color:white;border:0;padding:12px 25px;border-radius:6px;cursor:pointer}
+#result{font-weight:bold;color:#174a70;margin-top:20px}
+</style>
+</head>
+<body>
+<header>
+<h1>📝 交通安全學習測驗</h1>
+<p>測試你的交通安全知識</p>
+</header>
+<main>
+<form id="quiz">
+<div class="question">
+<p>1. 行人過馬路應優先使用哪個設施？</p>
+<label><input type="radio" name="q1" value="A"> A. 行人穿越道</label><br>
+<label><input type="radio" name="q1" value="B"> B. 車道中央</label><br>
+<label><input type="radio" name="q1" value="C"> C. 任意穿越</label>
+</div>
+
+<div class="question">
+<p>2. 紅燈亮起時，車輛應該？</p>
+<label><input type="radio" name="q2" value="A"> A. 加速通過</label><br>
+<label><input type="radio" name="q2" value="B"> B. 停止</label><br>
+<label><input type="radio" name="q2" value="C"> C. 按喇叭</label>
+</div>
+
+<div class="question">
+<p>3. 行走時使用手機可能造成什麼問題？</p>
+<label><input type="radio" name="q3" value="A"> A. 更安全</label><br>
+<label><input type="radio" name="q3" value="B"> B. 注意力分散</label><br>
+<label><input type="radio" name="q3" value="C"> C. 加快速度</label>
+</div>
+
+<div class="question">
+<p>4. 大型車轉彎時要特別注意？</p>
+<label><input type="radio" name="q4" value="A"> A. 內輪差與視線死角</label><br>
+<label><input type="radio" name="q4" value="B"> B. 車身顏色</label><br>
+<label><input type="radio" name="q4" value="C"> C. 音樂音量</label>
+</div>
+
+<div class="question">
+<p>5. AI 影像辨識可以協助？</p>
+<label><input type="radio" name="q5" value="A"> A. 分析道路影像</label><br>
+<label><input type="radio" name="q5" value="B"> B. 取消交通規則</label><br>
+<label><input type="radio" name="q5" value="C"> C. 取代所有駕駛</label>
+</div>
+
+<button type="button" onclick="checkAnswers()">提交答案</button>
+</form>
+<div id="result"></div>
+<p><a href="index.html">← 返回交通安全維基首頁</a></p>
+</main>
+
+<script>
+function checkAnswers(){
+const answers={q1:"A",q2:"B",q3:"B",q4:"A",q5:"A"};
+let score=0;
+let missing=0;
+for(let q in answers){
+let selected=document.querySelector('input[name="'+q+'"]:checked');
+if(!selected) missing++;
+else if(selected.value===answers[q]) score++;
+}
+if(missing>0){
+document.getElementById("result").textContent="還有 "+missing+" 題尚未作答！";
+return;
+}
+document.getElementById("result").textContent=
+"測驗完成！你答對 "+score+" / 5 題，得分 "+(score*20)+" 分。";
+}
+</script>
+</body>
+</html>
